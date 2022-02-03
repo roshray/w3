@@ -30,6 +30,17 @@ export const TransactionProvider = ({children}) => {
 
     }
 
+    const getAllTransactions = async () => {
+        try {
+            if(!ethereum) return alert('please install metamask')
+            const transactionContract = getEthereumContract()
+            const availableTransactions = await transactionContract.getAllTransactions()
+            console.log(availableTransactions)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const checkIfWalletIsConnected = async () => {
         try {
             if(!ethereum) return alert('please install metamask')
